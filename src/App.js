@@ -1,4 +1,4 @@
-import Airbnb from './AriBnb';
+import Airbnb from './AirBnb';
 
 function App() {
   return (
