@@ -1,4 +1,4 @@
-import AxiosServ from "./axios.service";
+import AxiosServ from "../axios.service";
 
 /* eslint-disable no-useless-constructor */
 class HttpRequestService {
