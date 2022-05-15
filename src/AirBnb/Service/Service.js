@@ -1,0 +1,1 @@
+export { default as localStorageServ } from './locaStorage.service';
