@@ -9,7 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { rootReducer } from './redux';
+import { rootReducer } from './AriBnb/store';
 
 const root = document.getElementById('root');
 
