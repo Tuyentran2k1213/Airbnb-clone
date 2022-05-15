@@ -1,120 +1,54 @@
-import Axios from "axios";
-// import { store } from "../index";
-import { DOMAIN, tokenByClass } from "../configURL/constant";
-// import {
-//   set_spinner_end,
-//   set_spinner_start,
-// } from "../redux/action/spinnerAction";
-import localStorageServ from "./locaStorage.service";
+import AxiosServ from "./axios.service";
 
-class AxiosService {
-  axios;
-  axiosConfig;
-  authService;
-  constructor(params) {
-    this.axios = Axios.create({
-      baseURL: this.getBaseUrl(),
-    });
-    this.getAxiosConfig();
+/* eslint-disable no-useless-constructor */
+class HttpRequestService {
+  constructor() {}
+
+  // layDanhSachPhim = () => {
+  //   const uri = "/api/QuanLyPhim/LayDanhSachPhim";
+  //   return AxiosServ.getMethod(uri, false);
+  // };
+
+  // dangNhap = (data) => {
+  //   const uri = "/api/QuanLyNguoiDung/DangNhap";
+  //   return AxiosServ.postMethod(uri, data);
+  // };
+  taoNguoiDung = (data) => {
+    const uri = '/api/users';
+
+    return AxiosServ.postMethod(uri, data);
+  }
+  layThongTinChiTietNguoiDung = (id) => {
+    const uri = `/api/users/${id}`;
+
+    return AxiosServ.getMethod(uri);
   }
 
-  getBaseUrl() {
-    return DOMAIN;
+  layDanhSachNguoiDung = () => {
+    const uri = '/api/users/pagination';
+
+    return AxiosServ.getMethod(uri);
   }
 
-  // domain production  => user
-  // domain test => tester
-  //  domain dev
-  getAxiosConfig = (_token) => {
-    const token = _token ? _token : localStorageServ.accessToken.get();
-    this.axiosConfig = {
-      headers: {
-        tokenByClass: tokenByClass,
-        // Authorization:
-        //   "bearer" + localStorageServ.userInfor.get()?.accessToken,
-        token,   
-      },
-    };
-  };
+  xoaNguoiDung = (id) => {
+    const uri = `/api/users/${id}`;
 
-  removeAxiosConfig = () => {
-    this.axiosConfig = {
-      headers: {
-        iKeapy: ``,
-        "Content-Type": "application/json",
-      },
-    };
-  };
-
-  getMethod(uri, loading = true) {
-    return this.handleFlow(this.axios.get(uri, this.axiosConfig), loading);
+    return AxiosServ.deleteMothod(uri);
   }
 
-  postMethod(uri, data, loading = true) {
-    return this.handleFlow(
-      this.axios.post(uri, data, this.axiosConfig),
-      loading
-    );
+  capNhatNguoiDung = (id, data) => {
+    const uri = `/api/users/${id}`;
+    
+    return AxiosServ.putMethod(uri, data);
   }
 
-  putMethod(uri, data, loading = true) {
-    return this.handleFlow(
-      this.axios.put(uri, data, this.axiosConfig),
-      loading
-    );
-  }
+  capNhatAvatar = (id, data) => {
+    const uri = `/api/users/upload-avatar/${id}`;
 
-  patchMethod(uri, data, loading = true) {
-    return this.handleFlow(
-      this.axios.patch(uri, data, this.axiosConfig),
-      loading
-    );
-  }
-
-  deleteMothod(uri, loading = true) {
-    return this.handleFlow(this.axios.delete(uri, this.axiosConfig), loading);
-  }
-
-  handleFlow(method, loading = true) {
-    // store.dispatch(set_spinner_start());
-    return new Promise((resolve, reject) => {
-      method
-        .then((res) => {
-          // store.dispatch(set_spinner_end());
-          resolve({
-            data: res.data,
-            status: res.status,
-            isSuccess: true,
-          });
-        })
-        .catch((err) => {
-          // store.dispatch(set_spinner_end());
-
-          this.handleError(err);
-          reject({
-            err: err,
-          });
-        });
-    });
-  }
-
-  handleError = (err) => {
-    const status = err.response?.status;
-    switch (status) {
-      // case 400:
-      case 401:
-      case 403:
-      // window.location.assign("/login");
-      //   break;
-      // default:
-      //   break;
-    }
-  };
-  //
-  axiosInstance = (req) => {
-    this.axios(req, this.axiosConfig);
+    return AxiosServ.postMethod(uri, data);
   };
 }
 
-const AxiosServ = new AxiosService();
-export default AxiosServ;
+const httpUserMana = new HttpRequestService();
+
+export default httpUserMana;
