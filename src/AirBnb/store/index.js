@@ -1,2 +1,2 @@
 export { default as rootReducer } from './reducer';
-export * as constantUser from './constant/userConstant';
+export * as userAction from './action/userAction';

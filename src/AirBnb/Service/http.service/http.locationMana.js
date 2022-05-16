@@ -1,6 +1,6 @@
 import Axios from "axios";
 // import { store } from "../index";
-import { DOMAIN, tokenByClass } from "./configURL/constant";
+import { DOMAIN, tokenByClass } from "../configURL/constant";
 // import {
 //   set_spinner_end,
 //   set_spinner_start,

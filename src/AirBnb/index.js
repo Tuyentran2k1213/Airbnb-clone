@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { SecureView } from './HOC/HOC';
-import { InnerPage } from './Page';
+import { InnerPage } from './Page/Page';
 
 export default function Airbnb() {
     return <>
