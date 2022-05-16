@@ -4,3 +4,4 @@
 // export { default as httpTicketMana } from './http.ticketMana';
 // export { default as httpUserAuth } from './http.userAuth';
 export { default as httpUserMana } from './http.usersMana';
+export { default as httpUserAuth} from './http.userAuth'
