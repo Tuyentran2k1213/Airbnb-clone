@@ -22,7 +22,7 @@ class HttpRequestService {
 
     return AxiosServ.putMethod(uri, data);
   };
-  xoaPhongChoThue = (id) => {
+  xoaPhongChoThue = (data, id) => {
     const uri = `/api/rooms/${id}`;
 
     return AxiosServ.deleteMothod(uri, data);

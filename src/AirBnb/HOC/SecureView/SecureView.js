@@ -1,5 +1,6 @@
 import React from "react";
-import localStorageServ from "../../Service/locaStorage.service";
+import NavHeader from "../../Component/NavHeader/NavHeader";
+// import localStorageServ from "../../Service/locaStorage.service";
 
 export default function SecureView({ Component }) {
   // let userInfor = localStorageServ.userInfor.get();
@@ -8,6 +9,9 @@ export default function SecureView({ Component }) {
     // userInfor?.accessToken && userInfor?.maLoaiNguoiDung === "QuanTri"
     // ? Component
     // : window.location.assign("/login");
-    Component
-  )
+    <>
+      <NavHeader />
+      Component 
+    </>
+  );
 }

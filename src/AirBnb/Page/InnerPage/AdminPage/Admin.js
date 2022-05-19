@@ -1,7 +1,7 @@
-export default function AdminPage() {
-    return (
-        <div>
-            admin
-        </div>
-    )
+import React from 'react'
+
+export default function Admin() {
+  return (
+    <div>Admin</div>
+  )
 }

@@ -7,6 +7,7 @@ export default function Airbnb() {
     <BrowserRouter>
         <Routes>
             <Route path='/' element={<SecureView Component={<InnerPage/>} />}/>
+            
         </Routes>
     </BrowserRouter>
     </>
