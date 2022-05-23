@@ -1,43 +1,120 @@
-import AxiosServ from "../axios.service";
+import Axios from "axios";
+// import { store } from "../index";
+import { DOMAIN, tokenByClass } from "../configURL/constant";
+// import {
+//   set_spinner_end,
+//   set_spinner_start,
+// } from "../redux/action/spinnerAction";
+import localStorageServ from "./locaStorage.service";
 
-class HttpRequestService {
-  constructor() {}
-  taoViTri = (data) => {
-    const uri = "/api/locations";
+class AxiosService {
+  axios;
+  axiosConfig;
+  authService;
+  constructor(params) {
+    this.axios = Axios.create({
+      baseURL: this.getBaseUrl(),
+    });
+    this.getAxiosConfig();
+  }
 
-    return AxiosServ.postMethod(uri, data);
+  getBaseUrl() {
+    return DOMAIN;
+  }
+
+  // domain production  => user
+  // domain test => tester
+  //  domain dev
+  getAxiosConfig = (_token) => {
+    const token = _token ? _token : localStorageServ.accessToken.get();
+    this.axiosConfig = {
+      headers: {
+        tokenByClass: tokenByClass,
+        // Authorization:
+        //   "bearer" + localStorageServ.userInfor.get()?.accessToken,
+        token,   
+      },
+    };
   };
-  xoaViTri = (id) => {
-    const uri = `/api/locations/${id}`;
 
-    return AxiosServ.deleteMothod(uri);
+  removeAxiosConfig = () => {
+    this.axiosConfig = {
+      headers: {
+        iKeapy: ``,
+        "Content-Type": "application/json",
+      },
+    };
   };
-  layDanhSachViTri = () => {
-    const uri = "/api/locations";
 
-    return AxiosServ.getMethod(uri);
+  getMethod(uri, loading = true) {
+    return this.handleFlow(this.axios.get(uri, this.axiosConfig), loading);
+  }
+
+  postMethod(uri, data, loading = true) {
+    return this.handleFlow(
+      this.axios.post(uri, data, this.axiosConfig),
+      loading
+    );
+  }
+
+  putMethod(uri, data, loading = true) {
+    return this.handleFlow(
+      this.axios.put(uri, data, this.axiosConfig),
+      loading
+    );
+  }
+
+  patchMethod(uri, data, loading = true) {
+    return this.handleFlow(
+      this.axios.patch(uri, data, this.axiosConfig),
+      loading
+    );
+  }
+
+  deleteMothod(uri, loading = true) {
+    return this.handleFlow(this.axios.delete(uri, this.axiosConfig), loading);
+  }
+
+  handleFlow(method, loading = true) {
+    // store.dispatch(set_spinner_start());
+    return new Promise((resolve, reject) => {
+      method
+        .then((res) => {
+          // store.dispatch(set_spinner_end());
+          resolve({
+            data: res.data,
+            status: res.status,
+            isSuccess: true,
+          });
+        })
+        .catch((err) => {
+          // store.dispatch(set_spinner_end());
+
+          this.handleError(err);
+          reject({
+            err: err,
+          });
+        });
+    });
+  }
+
+  handleError = (err) => {
+    const status = err.response?.status;
+    switch (status) {
+      // case 400:
+      case 401:
+      case 403:
+      // window.location.assign("/login");
+      //   break;
+      // default:
+      //   break;
+    }
   };
-  layThongTinChiTietViTri = (id) => {
-    const uri = `/api/locations/${id}`;
-
-    return AxiosServ.getMethod(uri);
-  };
-  capNhatThongTinViTri = (data, id) => {
-    const uri = `/api/locations/${id}`;
-
-    return AxiosServ.putMethod(uri, data);
-  };
-  capNhatAnhViTri = (data, id) => {
-    const uri = `/api/locations/upload-images/${id}`;
-
-    return AxiosServ.postMethod(uri, data);
-  };
-  layDanhSachViTriTheoDanhGia = (value) => {
-    const uri = `/api/locations/by-valueate?valueate=${value}`;
-
-    return AxiosServ.postMethod(uri);
+  //
+  axiosInstance = (req) => {
+    this.axios(req, this.axiosConfig);
   };
 }
-const httpLocationMana = new HttpRequestService();
 
-export default httpLocationMana;
+const AxiosServ = new AxiosService();
+export default AxiosServ;
