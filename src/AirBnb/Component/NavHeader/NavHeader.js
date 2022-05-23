@@ -12,19 +12,19 @@ export default function NavHeader() {
             href="#responsive-header"
             className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
           >
-            Về chúng tôi
+            Nơi ở
           </a>
           <a
             href="#responsive-header"
             className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white mr-4"
           >
-            Tải ứng dụng
+            Trải nghiệm
           </a>
           <a
             href="#responsive-header"
             className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-white"
           >
-            Đặt chỗ
+            Trải nghiệm trực tuyến
           </a>
         </div>
         <div>
