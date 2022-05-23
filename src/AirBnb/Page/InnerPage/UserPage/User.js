@@ -1,7 +1,7 @@
-export default function UserPage() {
-    return (
-        <div>
-            user page
-        </div>
-    )
+import React from 'react'
+
+export default function User() {
+  return (
+    <div>User</div>
+  )
 }

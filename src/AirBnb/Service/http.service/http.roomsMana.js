@@ -46,9 +46,11 @@ class AxiosService {
     };
   };
 
-  getMethod(uri, loading = true) {
-    return this.handleFlow(this.axios.get(uri, this.axiosConfig), loading);
-  }
+    return AxiosServ.putMethod(uri, data);
+  };
+  xoaPhongChoThue = (data, id) => {
+    const uri = `/api/rooms/${id}`;
+
 
   postMethod(uri, data, loading = true) {
     return this.handleFlow(
