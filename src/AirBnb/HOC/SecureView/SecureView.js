@@ -11,7 +11,7 @@ export default function SecureView({ Component }) {
     // : window.location.assign("/login");
     <>
       <NavHeader />
-      Component 
+      {Component}
     </>
   );
 }
