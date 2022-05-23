@@ -2,42 +2,42 @@ import AxiosServ from "../axios.service";
 
 class HttpRequestService {
   constructor() {}
-  layDanhSachVe = (data) => {
-    const uri = "/api/tickets";
+  taoViTri = (data) => {
+    const uri = "/api/locations";
 
-    return AxiosServ.getMethod(uri, data);
+    return AxiosServ.postMethod(uri, data);
   };
-  layThongTinChiTietVe = (id) => {
-    const uri = `/api/tickets/${id}`;
-
-    return AxiosServ.getMethod(uri);
-  };
-  // từ đây trở xuống chưa test được :((
-  capNhatThongTinVe = (data, id) => {
-    const uri = `/api/tickets/${id}`;
-
-    return AxiosServ.putMethod(uri, data);
-  };
-  xoaVe = (id) => {
-    const uri = `/api/tickets/${id}`;
+  xoaViTri = (id) => {
+    const uri = `/api/locations/${id}`;
 
     return AxiosServ.deleteMothod(uri);
   };
-  taoVe = (data) => {
-    const uri = `/api/tickets`;
+  layDanhSachViTri = () => {
+    const uri = "/api/locations";
 
-    return AxiosServ.deleteMothod(uri, data);
-  };
-  layDanhSachVeTheoNguoiDung = (id) => {
-    const uri = `/api/tickets/by-user?userID=${id}`;
     return AxiosServ.getMethod(uri);
   };
-  layDanhSachVeTheoPhong = (id) => {
-    const uri = `/api/tickets/by-room?roomId=${id}`;
+  layThongTinChiTietViTri = (id) => {
+    const uri = `/api/locations/${id}`;
+
     return AxiosServ.getMethod(uri);
+  };
+  capNhatThongTinViTri = (data, id) => {
+    const uri = `/api/locations/${id}`;
+
+    return AxiosServ.putMethod(uri, data);
+  };
+  capNhatAnhViTri = (data, id) => {
+    const uri = `/api/locations/upload-images/${id}`;
+
+    return AxiosServ.postMethod(uri, data);
+  };
+  layDanhSachViTriTheoDanhGia = (value) => {
+    const uri = `/api/locations/by-valueate?valueate=${value}`;
+
+    return AxiosServ.postMethod(uri);
   };
 }
+const httpLocationMana = new HttpRequestService();
 
-const httpTicketMana = new HttpRequestService();
-
-export default httpTicketMana;
+export default httpLocationMana;
