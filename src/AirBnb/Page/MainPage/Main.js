@@ -1,4 +1,3 @@
-import { Carousel } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getLocationAction } from "../../store/action/locationAction";
@@ -11,7 +10,6 @@ export default function Main() {
   }, []);
   return (
     <div>
-      <Carousel />
       <List />
     </div>
   );
