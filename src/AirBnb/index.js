@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './assets/scss/style.scss';
 import { SecureView } from "./HOC/HOC";
 import Main from "./Page/MainPage/Main";
 import { InnerPage } from "./Page/Page";
