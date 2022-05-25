@@ -15,7 +15,6 @@ export default function Detail() {
         console.log(err);
       });
   }, []);
-  console.log(dataViTri);
   return (
     <div className=" container mx-auto mt-2 flex flex-col">
       <div className="">
