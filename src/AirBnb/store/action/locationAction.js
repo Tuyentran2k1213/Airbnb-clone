@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import httpLocationMana from "../../Service/http.service/http.locationMana";
 import { SET_DANH_SACH_VI_TRI } from "../constant/locationConstant";
 
@@ -8,6 +7,7 @@ export const getLocationAction = () => {
     httpLocationMana
       .layDanhSachViTri()
       .then((res) => {
+        // console.log(res);
         dispatch({
           type: SET_DANH_SACH_VI_TRI,
           payload: res.data,

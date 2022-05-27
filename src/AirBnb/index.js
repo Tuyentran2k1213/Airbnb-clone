@@ -38,7 +38,7 @@ export default function Airbnb() {
           {/* <Route path="/signup" element={<SecureView Component={<InnerPage />} />} /> */}
           </Route>
           <Route
-            path="/detail/:id"
+            path="/detail/:province"
             element={<SecureView Component={<Detail />} />}
           />
         </Routes>

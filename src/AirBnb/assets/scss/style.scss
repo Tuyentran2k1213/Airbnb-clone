@@ -55,3 +55,28 @@
         }
     }
 }
+
+.Carousel1item{
+    height: 500px;
+    
+}
+@media all and (min-width: 769px) {
+    .Carousel1item{
+        height: 800px;
+        
+    }
+}
+
+@media all and (min-width: 481px) and (max-width: 768px) { 
+    .Carousel1item{
+        height: 600px;
+        
+    }
+}
+
+@media all and (max-width: 480px) {
+    .Carousel1item{
+        height: 400px;
+        
+    }
+}
