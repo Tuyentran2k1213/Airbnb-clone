@@ -1,10 +1,12 @@
 import React from "react";
 import { Card } from "antd";
+import { NavLink } from "react-router-dom";
 const { Meta } = Card;
 
 export default function ItemLocation({ data }) {
   return (
-    <Card
+    <NavLink to={`/detail/${data._id}`}>
+      <Card
       hoverable
       style={{
         width: 300,
@@ -16,5 +18,6 @@ export default function ItemLocation({ data }) {
     >
       <Meta title={data.name} description={data.province} className="" />
     </Card>
+    </NavLink>
   );
 }
