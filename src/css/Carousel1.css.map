@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,cAAc,CAAA;EACV,MAAM,EAAE,MAAM;CACjB",
-    "sources": [
-        "./AirBnb/Page/MainPage/Carousel/Carousel1.scss"
-    ],
-    "names": [],
-    "file": "Carousel1.css"
-}

@@ -1,6 +1,5 @@
 import React from "react";
 import Slider from "react-slick";
-import "../../../../css/Carousel1.css";
 
 let imgSrc = [
   "https://airbnb.cybersoft.edu.vn/public/temp/1651304740121_1636703505621_cantho.jpg",
@@ -24,9 +23,6 @@ export default function Carousel1() {
           return (
             <img
               className="Carousel1item"
-              style={{
-                objectFit: "fit",
-              }}
               src={item}
               key={index}
             />

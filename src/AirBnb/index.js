@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './assets/scss/style.scss';
 import { SecureView } from "./HOC/HOC";
 import Detail from "./Page/DetailPage/Detail";
 import Main from "./Page/MainPage/Main";
@@ -15,7 +16,7 @@ export default function Airbnb() {
             element={<SecureView Component={<InnerPage />} />}
           />
           <Route
-            path="/detail/:id"
+            path="/detail/:province"
             element={<SecureView Component={<Detail />} />}
           />
         </Routes>
