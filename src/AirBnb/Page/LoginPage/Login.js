@@ -1,13 +1,16 @@
 import { Button, Checkbox, Form, Input, Spin } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import { userAction } from '../../store';
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { isEqual } from 'lodash';
+import { useEffect, useState } from 'react';
 
 export default function Login() {
 
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { userInfor } = useSelector(state => state.userReducer, (prev, next) => isEqual(prev, next));
 
   const onFinish = (values) => {
     dispatch(userAction.LoginAction({
@@ -20,8 +23,14 @@ export default function Login() {
     console.log('Failed:', errorInfo);
   };
 
+  useEffect(() => {
+    if(userInfor){
+      navigate('/');
+    }
+  }, [userInfor])
+
   return (
-    <Spin spinning={loading}>
+    <Spin spinning={loading} tip="Login...">
       <Form
       name="basic"
       labelCol={{

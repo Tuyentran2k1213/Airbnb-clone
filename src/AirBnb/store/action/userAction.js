@@ -43,15 +43,15 @@ export const LoginAction = payload => {
 
 export const SignupAction = data => {
     const { name, email, password, phone, birth, gender, address } = data;
-
     try{
-        if(!name || !email || !password  || !phone || !birth || !gender || !address){
+        if(!name || !email || !password  || !phone || !birth || !address){
             console.log('missing data');
         } else {
             return (() => {
-                httpUserAuth.dangKy(data)
+                return httpUserAuth.dangKy(data)
                     .then(res => {
                         message.success('This is a success message');
+                        return res.isSuccess;
                     })
                     .catch(err => {
                         console.log(err);
