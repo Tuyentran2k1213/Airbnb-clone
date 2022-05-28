@@ -2,21 +2,28 @@ import { message } from 'antd';
 import { USER_LOGIN, USER_SIGNUP } from "../constant/userConstant";
 import { httpServ, localStorageServ } from '../../Service/Service'
 import httpUserMana from '../../Service/http.service/http.usersMana';
+import { useNavigate } from 'react-router-dom';
 
 const { httpUserAuth } = httpServ;
 
-export const LoginAction = data => {
-    const { email, password } = data;
-    
+export const LoginAction = payload => {
+    const { email, password } = payload.data;
+    const { onAction, onClose } = payload;
+
     try{
     if(!email || !password) {
           console.log('missing data');  
     } else {
         return (dispatch => {
-            httpUserAuth.dangNhap(data)
+            onAction(true);
+            httpUserAuth.dangNhap(payload.data)
                 .then(res => {
-                    if(data.remember){
+                    onAction(false);
+                    if(payload.data.remember){
                         localStorageServ.userInfor.set(res.data.user);
+                    }
+                    if(onClose){
+                        onClose();
                     }
                     dispatch({
                         type: USER_LOGIN,
@@ -24,6 +31,7 @@ export const LoginAction = data => {
                     })
                 })
                 .catch(err => {
+                    onAction(false);
                     console.log(err);
                 })
         })
@@ -35,15 +43,15 @@ export const LoginAction = data => {
 
 export const SignupAction = data => {
     const { name, email, password, phone, birth, gender, address } = data;
-
     try{
-        if(!name || !email || !password  || !phone || !birth || !gender || !address){
+        if(!name || !email || !password  || !phone || !birth || !address){
             console.log('missing data');
         } else {
             return (() => {
-                httpUserAuth.dangKy(data)
+                return httpUserAuth.dangKy(data)
                     .then(res => {
                         message.success('This is a success message');
+                        return res.isSuccess;
                     })
                     .catch(err => {
                         console.log(err);

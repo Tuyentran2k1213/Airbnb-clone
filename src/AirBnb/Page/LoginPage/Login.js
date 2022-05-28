@@ -1,18 +1,37 @@
-import { Button, Checkbox, Form, Input } from 'antd';
-import { Link } from 'react-router-dom';
+import { Button, Checkbox, Form, Input, Spin } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import { userAction } from '../../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { isEqual } from 'lodash';
+import { useEffect, useState } from 'react';
 
 export default function Login() {
 
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { userInfor } = useSelector(state => state.userReducer, (prev, next) => isEqual(prev, next));
+
   const onFinish = (values) => {
-    console.log('Success:', values);
+    dispatch(userAction.LoginAction({
+      data: values,
+      onAction: setLoading,
+    }));
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
+  useEffect(() => {
+    if(userInfor){
+      navigate('/');
+    }
+  }, [userInfor])
+
   return (
-    <Form
+    <Spin spinning={loading} tip="Login...">
+      <Form
       name="basic"
       labelCol={{
         span: 8,
@@ -28,12 +47,12 @@ export default function Login() {
       autoComplete="off"
     >
       <Form.Item
-        label="Username"
-        name="username"
+        label="Email"
+        name="email"
         rules={[
           {
             required: true,
-            message: 'Please input your username!',
+            message: 'Please input your email',
           },
         ]}
       >
@@ -80,5 +99,6 @@ export default function Login() {
         </span>
 
     </Form>
+    </Spin>
   )
 }

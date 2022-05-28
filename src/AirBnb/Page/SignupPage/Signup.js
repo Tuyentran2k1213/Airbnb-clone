@@ -1,12 +1,43 @@
-import { Form, Input, DatePicker, Radio, Button } from 'antd';
-import { Link } from 'react-router-dom';
+import { Form, Input, DatePicker, Radio, Button, Spin } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import { userAction } from '../../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { isEqual } from 'lodash';
+
 
 export default function Signup() {
 
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { userInfor } = useSelector(state => state.userReducer, (prev, next) => isEqual(prev, next));
+
+  const onFinish = (values) => {
+    setLoading(true);
+    const waiting = async () => {
+      return await dispatch(userAction.SignupAction(values));
+    };
+    waiting()
+      .then(res => {
+        setLoading(!res);
+        navigate('/mobile/login');
+      });
+  };
+
+  const onFinishFailed = (errorInfo) => {
+  };
+
+  useEffect(() => {
+    if(userInfor){
+      navigate('/');
+    }
+  }, [userInfor]);
 
   return (
     <>
     <div className='pb-44'>
+    <Spin spinning={loading} tip="Waiting for signup...">
     <Form
       name="Signup"
       labelCol={{
@@ -19,6 +50,8 @@ export default function Signup() {
         remember: true,
       }}
       autoComplete="off"
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
     >
       <Form.Item
         label="Name"
@@ -116,6 +149,7 @@ export default function Signup() {
       </span>
       
     </Form>
+    </Spin>
     </div>
     </>
   )
