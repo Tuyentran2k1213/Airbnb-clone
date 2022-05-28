@@ -16,7 +16,7 @@ export const LoginAction = data => {
             httpUserAuth.dangNhap(data)
                 .then(res => {
                     if(data.remember){
-                        localStorageServ(res.data.user);
+                        localStorageServ.userInfor.set(res.data.user);
                     }
                     dispatch({
                         type: USER_LOGIN,
