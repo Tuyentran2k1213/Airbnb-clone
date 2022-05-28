@@ -1,12 +1,14 @@
-import { Modal, Form, Input, Checkbox } from "antd";
+import { Modal, Form, Input, Checkbox, Spin } from "antd";
 import { userAction } from '../../store';
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 export default function LoginForm({...props}) {
 
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const { openForm, clickClose } = props;
+  const [loading, setLoading] = useState(false);
 
   return (
     <div className="login-form-style">
@@ -16,8 +18,11 @@ export default function LoginForm({...props}) {
         onOk={() => {
           form.validateFields()
             .then(values => {
-              dispatch(userAction.LoginAction(values));
-              clickClose()
+              dispatch(userAction.LoginAction({
+                data: values,
+                onAction: setLoading,
+                onClose: clickClose,
+              }));
             })
             .catch(err => {})
         }}
@@ -25,6 +30,7 @@ export default function LoginForm({...props}) {
         onCancel={() => clickClose()}
       >
 
+<Spin spinning={loading} tip="Login...">
 <Form
       form={form}
       name="login"
@@ -81,7 +87,8 @@ export default function LoginForm({...props}) {
       </Form.Item>
 
 
-    </Form>          
+    </Form>
+  </Spin>          
         
       </Modal>
     </div>
