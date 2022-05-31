@@ -1,13 +1,18 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ItemProvince from "../ItemProvince/ItemProvince";
+import { roomAction } from "../../../store";
 
 export default function List() {
-  let { dsViTri } = useSelector((state) => state.locationReducer);
+  let dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(roomAction.getRoomAction());
+  }, []);
+  let { dsPhong } = useSelector((state) => state.roomReducer);
   let { dsTinh } = useSelector((state) => state.provinceReducer);
-  let viTris = dsViTri.map((item) => item.province);
+  let Phongs = dsPhong.map((item) => item.locationId?.province);
   const demViTri = (item) => {
-    let conca = viTris.filter(function (e) {
+    let conca = Phongs.filter(function (e) {
       return e === item;
     });
     return conca.length;
@@ -17,7 +22,7 @@ export default function List() {
   });
   return (
     <div className=" container mx-auto mt-20">
-      <h1 className="text-4xl">Các địa điểm yêu thích gần đây </h1>
+      <h1 className=" text-4xl">Các địa điểm yêu thích gần đây </h1>
       <div className="flex flex-wrap justify-center">
         {dsTinh.map((item) => {
           return <ItemProvince data={item} />;

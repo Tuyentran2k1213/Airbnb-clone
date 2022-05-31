@@ -10,7 +10,7 @@ export default function Main() {
     dispatch(getLocationAction());
   }, []);
   return (
-    <div className="mt-[7rem]">
+    <div className="">
       <Carousel1 />
       <List />
     </div>
