@@ -4,7 +4,6 @@ import { size } from "lodash";
 const { Meta } = Card;
 
 export default function ItemLocation({ data }) {
-  console.log(data);
   return (
     <Card
       hoverable
