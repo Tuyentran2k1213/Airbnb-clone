@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { localStorageServ } from './Service/Service';
@@ -8,17 +8,29 @@ import { SecureView } from "./HOC/HOC";
 import Detail from "./Page/DetailPage/Detail";
 import Main from "./Page/MainPage/Main";
 import { InnerPage, LoginPage, SignupPage } from "./Page/Page";
+import { Spin } from "antd";
 
 export default function Airbnb() {
 
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
 
     const userInf = localStorageServ.userInfor.get();
-
     if(userInf){
-      dispatch(userAction.getDetailUser(userInf._id));
+      setLoading(true);
+      if(userInf._id) {
+        const firstLoading = async () => {
+          return await dispatch(userAction.getDetailUser(userInf._id));
+        }
+        firstLoading()
+          .then(res => {
+            setLoading(res);
+          })
+      } else {
+        alert('Vui lòng đăng nhập lại')
+      }
     }
   
     
@@ -27,8 +39,12 @@ export default function Airbnb() {
 
   return (
     <>
+      {loading ? <div className="w-screen h-screen flex justify-center items-center">
+        <Spin size="large" tip="loading..."/>
+      </div> : 
       <BrowserRouter>
-        <Routes>
+      <Routes>
+
 
           <Route path="/" element={<SecureView Component={<Main/>}/>} />
           <Route path="/main" element={<SecureView Component={<InnerPage />} />} />
