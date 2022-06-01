@@ -1,30 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import httpLocationMana from "../../Service/http.service/http.locationMana";
-
+import ItemLocation from "./ItemLocation/ItemLocation";
+import { useDispatch, useSelector } from "react-redux";
+import { roomAction } from "../../store";
 export default function Detail() {
-  let { id } = useParams();
-  const [dataViTri, setDataViTri] = useState({});
+  let dispatch = useDispatch();
   useEffect(() => {
-    httpLocationMana
-      .layThongTinChiTietViTri(id)
-      .then((res) => {
-        setDataViTri(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(roomAction.getRoomAction());
   }, []);
-  console.log(dataViTri);
+  let { province } = useParams();
+  let { dsPhong } = useSelector((state) => state.roomReducer);
+  console.log(dsPhong);
+  let dsPhongPhuHop = dsPhong?.filter(function (item) {
+   return item?.locationId?.province === province;
+  });
+  useEffect(() => {
+    console.log(dsPhongPhuHop);
+  }, [dsPhongPhuHop]);
   return (
-    <div className=" container mx-auto mt-2 flex flex-col">
-      <div className="">
-        <h1 className=" text-4xl">{dataViTri.name}</h1>
-        <h1 className=" text-lg underline">{dataViTri.province}</h1>
-      </div>
-      <div className=" w-3/4 mx-auto">
-        <img className=" object-cover w-full" src={dataViTri.image} alt="" />
-      </div>
+    <div className=" container mx-auto mt-36 flex flex-col">
+      <h1 className="text-4xl">Các địa điểm hàng đầu tại {province}</h1>
+      {dsPhongPhuHop.map((item)=>{
+        return <ItemLocation data={item}/>
+      })}
     </div>
   );
 }

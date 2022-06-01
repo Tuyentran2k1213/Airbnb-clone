@@ -71,7 +71,7 @@ export default function NavHeader() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center border-b-2 border-gray-100 py-4 md:justify-start md:space-x-10">
           <div className="flex justify-start w-0 flex-1">
-            <a href="#">
+            <a href="/">
               <img
                 className="h-9 w-[8rem]"
                 src="./assets/logo/airbnb.svg"

@@ -45,19 +45,20 @@ export default function Airbnb() {
       <BrowserRouter>
       <Routes>
 
-        <Route path="/" element={<SecureView Component={<Main/>}/>} />
-        <Route path="/main" element={<SecureView Component={<InnerPage />} />} />
-        <Route path="/mobile">
-        <Route path="login" element={<SecureView Component={<LoginPage />} />} />
-        <Route path="signup" element={<SecureView Component={<SignupPage />} />} />
-        {/* <Route path="/signup" element={<SecureView Component={<InnerPage />} />} /> */}
-        </Route>
-        <Route
-          path="/detail/:id"
-          element={<SecureView Component={<Detail />} />}
-        />
-      </Routes>
-    </BrowserRouter>}
+
+          <Route path="/" element={<SecureView Component={<Main/>}/>} />
+          <Route path="/main" element={<SecureView Component={<InnerPage />} />} />
+          <Route path="/mobile">
+          <Route path="login" element={<SecureView Component={<LoginPage />} />} />
+          <Route path="signup" element={<SecureView Component={<SignupPage />} />} />
+          {/* <Route path="/signup" element={<SecureView Component={<InnerPage />} />} /> */}
+          </Route>
+          <Route
+            path="/detail/:province"
+            element={<SecureView Component={<Detail />} />}
+          />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

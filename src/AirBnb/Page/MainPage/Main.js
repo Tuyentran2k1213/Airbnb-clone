@@ -1,7 +1,7 @@
-import { Carousel } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getLocationAction } from "../../store/action/locationAction";
+import Carousel1 from "./Carousel/Carousel1";
 import List from "./ListPage/List";
 
 export default function Main() {
@@ -10,8 +10,8 @@ export default function Main() {
     dispatch(getLocationAction());
   }, []);
   return (
-    <div className="mt-[7rem]">
-      <Carousel />
+    <div className="">
+      <Carousel1 />
       <List />
     </div>
   );
