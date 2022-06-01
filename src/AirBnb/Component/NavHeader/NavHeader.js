@@ -1,7 +1,8 @@
 import { Fragment, Suspense, lazy, useEffect, useState } from 'react'
 import { Popover, Transition } from '@headlessui/react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { userAction } from '../../store';
 // import { SignupForm } from '../FormModal/FormModal';
 const SignupForm = lazy(() => import('../FormModal/SignupForm'));
 const LoginForm = lazy(() => import('../FormModal/LoginForm'));
@@ -28,18 +29,18 @@ const UserIcon = lazy(() => import('@heroicons/react/solid/UserIcon'));
 // import { Avatar } from 'antd';
 const Avatar = lazy(() => import('antd/lib/avatar/index'));
 
+const Spin = lazy(() => import('antd/lib/spin/index'));
+
 
 export default function NavHeader() {
 
   const { userInfor } = useSelector(state => state.userReducer);
-
-  useEffect(() => {
-
-  }, []);
+  const dispatch = useDispatch();
 
   const [scrolling, setScrolling] = useState(false);
   const [signupForm, setSignupForm] = useState(false);
   const [loginForm, setLoginForm] = useState(false);
+  const [loadingSignin, setLoadingSignin] = useState(false);
   
 
 
@@ -54,6 +55,14 @@ export default function NavHeader() {
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
   }, [])
+
+  const handleLogout = () => {
+    setLoadingSignin(true);
+    setTimeout(() => {
+      dispatch(userAction.LogoutAction());
+      setLoadingSignin(false);
+    }, 1000)
+  }
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -113,7 +122,7 @@ export default function NavHeader() {
         backgroundColor: '#fde3cf',
       }}
     >
-      {userInfor.name.slice(0, 1).toUpperCase()}
+      {userInfor?.name.slice(0, 1).toUpperCase()}
     </Avatar>
                 )}
                 </span>
@@ -128,6 +137,7 @@ export default function NavHeader() {
           leaveTo="opacity-0 scale-95"
         >
           <Popover.Panel focus className="absolute top-12 -left-[11rem] inset-x-0 p-2 transition h-[100px] w-[270px] transform origin-top-right z-50">
+            <Spin tip="Logout..." spinning={loadingSignin}>
             <div className="rounded-lg drop-shadow-2xl ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
               <div className="flex flex-col items-start dropdown-list-link">
                 <a className='font-medium'>
@@ -154,11 +164,12 @@ export default function NavHeader() {
                 <a>
                   Trợ giúp
                 </a>
-                <a>
+                <a onClick={handleLogout}>
                   Đăng xuất
                 </a>
               </div>
             </div>
+            </Spin>
           </Popover.Panel>
         </Transition>
   

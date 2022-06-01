@@ -63,18 +63,29 @@ export const SignupAction = data => {
     }
 }
 
+export const LogoutAction = () => {
+    return dispatch => {
+        localStorageServ.userInfor.remove()
+        dispatch({
+            type: USER_LOGIN,
+            payload: null,
+        })
+    }
+}
+
 export const getDetailUser = data => {
     try{
         if(!data){
             console.log('missing data');
         } else {
             return (dispatch => {
-                httpUserMana.layThongTinChiTietNguoiDung(data)
+                return httpUserMana.layThongTinChiTietNguoiDung(data)
                     .then(res => {
                         dispatch({
                             type: USER_LOGIN,
                             payload: res.data,
                         })
+                        return false;
                     })
                     .catch(err => {
                         console.log(err);
