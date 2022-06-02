@@ -27,7 +27,7 @@ let initialState = {
       name: "Nha Trang",
       image:
         "https://media.mia.vn/uploads/blog-du-lich/duong-tran-phu-nha-trang-noi-anh-den-chua-bao-gio-tat-1622551297.jpg",
-      province: "Nha Trang123",
+      province: "Nha Trang1234",
       rental: 0,
     },
     {
