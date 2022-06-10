@@ -1,5 +1,5 @@
 import React from "react";
-import { NavHeader } from "../../Component/Component";
+import { Footer, NavHeader } from "../../Component/Component";
 // import localStorageServ from "../../Service/locaStorage.service";
 
 export default function SecureView({ Component }) {
@@ -12,6 +12,7 @@ export default function SecureView({ Component }) {
     <>
       <NavHeader />
       {Component}
+      <Footer />
     </>
   );
 }

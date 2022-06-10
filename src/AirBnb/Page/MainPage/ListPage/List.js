@@ -22,7 +22,7 @@ export default function List() {
   });
   return (
     <div className=" container mx-auto mt-20">
-      <h1 className=" text-4xl">Các địa điểm yêu thích gần đây </h1>
+      <h1 className="locationTitle text-4xl">Các địa điểm yêu thích gần đây </h1>
       <div className="flex flex-wrap justify-center">
         {dsTinh.map((item) => {
           return <ItemProvince data={item} />;
