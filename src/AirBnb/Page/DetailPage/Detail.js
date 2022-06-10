@@ -8,18 +8,17 @@ export default function Detail() {
   useEffect(() => {
     dispatch(roomAction.getRoomAction());
   }, []);
-  let { province } = useParams();
+  let { data } = useParams();
   let { dsPhong } = useSelector((state) => state.roomReducer);
-  console.log(dsPhong);
   let dsPhongPhuHop = dsPhong?.filter(function (item) {
-   return item?.locationId?.province === province;
+   return item?.locationId?.province === data;
   });
   useEffect(() => {
     console.log(dsPhongPhuHop);
   }, [dsPhongPhuHop]);
   return (
     <div className=" container mx-auto mt-36 flex flex-col">
-      <h1 className="text-4xl">Các địa điểm hàng đầu tại {province}</h1>
+      <h1 className="text-4xl">Các địa điểm hàng đầu tại {data}</h1>
       {dsPhongPhuHop.map((item)=>{
         return <ItemLocation data={item}/>
       })}

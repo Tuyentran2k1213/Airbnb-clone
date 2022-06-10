@@ -1,5 +1,5 @@
 import httpRoomsMana from "../../Service/http.service/http.roomsMana";
-import { SET_DANH_SACH_PHONG } from "../constant/roomConstant";
+import { LAY_CHI_TIET_PHONG, SET_DANH_SACH_PHONG } from "../constant/roomConstant";
 
 export const getRoomAction = () => {
   return (dispatch) => {
@@ -16,3 +16,19 @@ export const getRoomAction = () => {
       });
   };
 };
+
+export const getDetailRoom = id => {
+  return dispatch => {
+    httpRoomsMana
+      .layThongTinChiTietPhong(id)
+      .then(res => {
+        dispatch({
+          type: LAY_CHI_TIET_PHONG,
+          payload: {...res.data}
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+}

@@ -8,7 +8,7 @@ export default function ItemProvince({ data }) {
   return (
     <Card
       onClick={() => {
-        navigate(`/detail/${data.province}`);
+        navigate(`/detail/province/${data.province}`);
       }}
       hoverable
       style={{
