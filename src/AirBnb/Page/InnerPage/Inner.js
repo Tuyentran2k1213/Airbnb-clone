@@ -11,7 +11,7 @@ export default function InnerPage() {
     useEffect(() => {
         httpServ.httpUserMana.layDanhSachNguoiDung()
             .then(res => {
-                console.log(res);
+                // console.log(res);
             })
             .catch(err => {
                 console.log(err);

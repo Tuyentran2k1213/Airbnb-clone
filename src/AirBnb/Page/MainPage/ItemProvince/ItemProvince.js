@@ -7,6 +7,7 @@ export default function ItemProvince({ data }) {
   let navigate = useNavigate();
   return (
     <Card
+      target={'blank'}
       onClick={() => {
         navigate(`/detail/${data.province}`);
       }}
