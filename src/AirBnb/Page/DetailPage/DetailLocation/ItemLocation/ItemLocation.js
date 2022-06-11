@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "antd";
 import { Link } from "react-router-dom";
+
 const { Meta } = Card;
 
 export default function ItemLocation({ data }) {
@@ -30,6 +31,8 @@ export default function ItemLocation({ data }) {
         description="www.instagram.com"
       />
     </Card>
+
     </Link>
+
   );
 }

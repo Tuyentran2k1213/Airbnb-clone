@@ -8,7 +8,7 @@ export default function DetailLocation() {
   useEffect(() => {
     dispatch(roomAction.getRoomAction());
   }, []);
-  let { data } = useParams();
+  let { province } = useParams();
   let { dsPhong } = useSelector((state) => state.roomReducer);
   // console.log(dsPhong);
   let dsPhongPhuHop = dsPhong?.filter(function (item) {
