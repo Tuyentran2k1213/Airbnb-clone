@@ -1,10 +1,11 @@
 import React from "react";
 import { Card } from "antd";
-import { size } from "lodash";
+import { Link } from "react-router-dom";
 const { Meta } = Card;
 
 export default function ItemLocation({ data }) {
   return (
+    <Link to={`/detail/room/${data._id}`}>
     <Card
       hoverable
       style={{
@@ -29,5 +30,6 @@ export default function ItemLocation({ data }) {
         description="www.instagram.com"
       />
     </Card>
+    </Link>
   );
 }

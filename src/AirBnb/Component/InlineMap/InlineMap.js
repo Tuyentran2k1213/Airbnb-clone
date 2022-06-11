@@ -6,11 +6,13 @@ function InlineMap({...props}) {
 
   const options = { closeBoxURL: '', enableEventPropagation: true };
 
+  console.log(props.dataMarker.coor);
+
     return (
         <div>
           <GoogleMap
               defaultZoom={7}
-              defaultCenter={{ lat: 7, lng: 105 }}
+              defaultCenter={{ lat: 20, lng: 105 }}  
             >
               <Marker
               icon={{

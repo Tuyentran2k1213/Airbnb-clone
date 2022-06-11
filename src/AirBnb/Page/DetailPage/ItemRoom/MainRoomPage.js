@@ -8,7 +8,6 @@ import Rating from "./Review";
 import YourReview from "./YourReview";
 import Bill from "./Bill";
 import InlineMap from "../../../Component/InlineMap/InlineMap";
-import { useRandLocation } from '../../../HOOK';
 const key = 'AIzaSyALiRgSCrHgQmHxbmoWPFdGoVNUvG--wp0';
 
 export default function MainRoom( {...props} ) {
@@ -18,9 +17,7 @@ export default function MainRoom( {...props} ) {
 
     const { chitietPhong } = useSelector(state => state.roomReducer);
 
-    const randLocation = useRandLocation();
-
-    console.log(randLocation);
+    const randLocation = props.randing;
 
     useEffect(() => {
         dispatch(roomAction.getDetailRoom(props.id_place))
