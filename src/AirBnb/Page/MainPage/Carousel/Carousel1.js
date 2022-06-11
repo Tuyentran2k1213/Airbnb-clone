@@ -1,6 +1,6 @@
 import React from "react";
 import { Carousel } from "antd";
-import Search from "./Search/Search"
+import Search from "./Search/Search";
 
 let Src = [
   {
@@ -26,7 +26,7 @@ export default function Carousel1() {
             <div>
               <img
                 style={{
-                  width: "100%",
+                  width: "100%"
                 }}
                 src={item.img}
                 alt=""
@@ -45,8 +45,10 @@ export default function Carousel1() {
           );
         })}
       </Carousel>
+      <div className="maintitle">
+      </div>
       <div className="search">
-        <Search/>
+        <Search />
       </div>
     </div>
   );

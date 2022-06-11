@@ -32,6 +32,12 @@ export default function Search() {
         onChange={onChange}
         onSearch={onSearch}
         className="select"
+        rules={[
+          {
+            required: true,
+            message: "Please input your name",
+          },
+        ]}
       >
         {dsTinh2.map((item) => {
           return <Option value={`${item}`}>{item}</Option>;
@@ -44,7 +50,11 @@ export default function Search() {
         className="picker"
         renderExtraFooter={() => "extra footer"}
       />
-      <Select defaultValue="số thành viên" style={{ width: 200 }}>
+      <Select
+        showArrow={false}
+        defaultValue="số thành viên"
+        style={{ width: 200 }}
+      >
         <Option value="1">đi một mình</Option>
         <Option value="2">đi cặp đôi</Option>
         <Option value="3">đi theo gia đình</Option>
