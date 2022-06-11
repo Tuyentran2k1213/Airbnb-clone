@@ -5,7 +5,7 @@ const { Meta } = Card;
 
 export default function ItemProvince({ data }) {
   return (
-    <NavLink target={"_blank"} to={`/detail/${data.province}`}>
+    <NavLink target={"_blank"} to={`/detail/province/${data.province}`}>
       <Card
         hoverable
         style={{

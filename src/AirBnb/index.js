@@ -5,10 +5,8 @@ import { localStorageServ } from "./Service/Service";
 import "./assets/scss/style.scss";
 import { userAction } from "./store";
 import { SecureView } from "./HOC/HOC";
-import Detail from "./Page/DetailPage/Detail";
-import DetailRoom from "./Page/DetailPage/DetailRoom";
 import Main from "./Page/MainPage/Main";
-import { DetailLocation, InnerPage, LoginPage, SignupPage } from "./Page/Page";
+import { DetailLocation, InnerPage, LoginPage, SignupPage, DetailRoom } from "./Page/Page";
 import { Spin } from "antd";
 
 export default function Airbnb() {
@@ -48,7 +46,7 @@ export default function Airbnb() {
           </Route>
           <Route path="/detail">
             <Route path="province/:data"
-            element={<SecureView Component={<Detail />} />}/>
+            element={<SecureView Component={<DetailLocation />} />}/>
             <Route path="room/:id"
             element={<SecureView Component={<DetailRoom/>}/>}/>
           </Route>
