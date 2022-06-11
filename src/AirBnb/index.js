@@ -7,6 +7,7 @@ import { userAction } from "./store";
 import { SecureView } from "./HOC/HOC";
 import Detail from "./Page/DetailPage/Detail";
 import DetailRoom from "./Page/DetailPage/DetailRoom";
+
 import Main from "./Page/MainPage/Main";
 import { DetailLocation, InnerPage, LoginPage, SignupPage } from "./Page/Page";
 import { Spin } from "antd";
