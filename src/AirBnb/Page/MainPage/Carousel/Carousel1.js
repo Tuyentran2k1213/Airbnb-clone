@@ -1,5 +1,6 @@
 import React from "react";
 import { Carousel } from "antd";
+import Search from "./Search/Search";
 
 let Src = [
   {
@@ -18,14 +19,14 @@ let Src = [
 
 export default function Carousel1() {
   return (
-    <div>
+    <div className="carousel">
       <Carousel autoplay dots={false}>
         {Src.map((item) => {
           return (
             <div>
               <img
                 style={{
-                  width: "100%",
+                  width: "100%"
                 }}
                 src={item.img}
                 alt=""
@@ -37,13 +38,18 @@ export default function Carousel1() {
                   height: "100%",
                   background: "black",
                   top: "0",
-                  opacity:"0.2"
+                  opacity: "0.2",
                 }}
               ></div>
             </div>
           );
         })}
       </Carousel>
+      <div className="maintitle">
+      </div>
+      <div className="search">
+        <Search />
+      </div>
     </div>
   );
 }

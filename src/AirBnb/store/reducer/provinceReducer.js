@@ -1,4 +1,7 @@
-import { SET_DANH_SACH_TINH } from "../constant/provinceConstant";
+import {
+  SET_DANH_SACH_TINH,
+  SET_DANH_SACH_TINH_2,
+} from "../constant/provinceConstant";
 
 let initialState = {
   dsTinh: [
@@ -10,10 +13,10 @@ let initialState = {
       rental: 0,
     },
     {
-      name: "Hà Nội",
+      name: "Hà Nội",
       image:
         "https://owa.bestprice.vn/images/destinations/uploads/trung-tam-thanh-pho-ha-noi-603da1f235b38.jpg",
-      province: "Hà Nội",
+      province: "Hà Nội",
       rental: 0,
     },
     {
@@ -27,7 +30,7 @@ let initialState = {
       name: "Nha Trang",
       image:
         "https://media.mia.vn/uploads/blog-du-lich/duong-tran-phu-nha-trang-noi-anh-den-chua-bao-gio-tat-1622551297.jpg",
-      province: "Nha Trang123",
+      province: "Nha Trang1234",
       rental: 0,
     },
     {
@@ -59,13 +62,16 @@ let initialState = {
       rental: 0,
     },
   ],
+  dsTinh2: [],
 };
-
 
 const provinceReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_DANH_SACH_TINH: {
       return { ...state, dsTinh: action.payload };
+    }
+    case SET_DANH_SACH_TINH_2: {
+      return { ...state, dsTinh2: action.payload};
     }
     default:
       return { ...state };
