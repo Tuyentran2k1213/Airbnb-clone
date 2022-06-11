@@ -4,7 +4,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 const { Meta } = Card;
 
 export default function ItemProvince({ data }) {
-  let navigate = useNavigate();
   return (
     <NavLink target={"_blank"} to={`/detail/${data.province}`}>
       <Card
