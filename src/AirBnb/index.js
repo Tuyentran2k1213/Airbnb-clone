@@ -6,7 +6,13 @@ import "./assets/scss/style.scss";
 import { userAction } from "./store";
 import { SecureView } from "./HOC/HOC";
 import Main from "./Page/MainPage/Main";
-import { DetailLocation, InnerPage, LoginPage, SignupPage } from "./Page/Page";
+import {
+  DetailLocation,
+  InnerPage,
+  LoginPage,
+  SignupPage,
+  UserPage,
+} from "./Page/Page";
 import { Spin } from "antd";
 
 export default function Airbnb() {
@@ -57,7 +63,11 @@ export default function Airbnb() {
             </Route>
             <Route
               path="/detail/:province"
-              element={<SecureView Component={<DetailLocation/>} />}
+              element={<SecureView Component={<DetailLocation />} />}
+            />
+            <Route
+              path="/user"
+              element={<SecureView Component={<UserPage />} />}
             />
           </Routes>
         </BrowserRouter>
