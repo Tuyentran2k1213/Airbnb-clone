@@ -1,4 +1,5 @@
-import { Fragment, Suspense, lazy, useEffect, useState } from 'react'
+import { Fragment, Suspense, lazy, useEffect, useState } from 'react';
+import { AirBnbIcon } from '../../assets/SpecialIcon';
 import { Popover, Transition } from '@headlessui/react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -72,11 +73,9 @@ export default function NavHeader() {
         <div className="flex justify-between items-center border-b-2 border-gray-100 py-4 md:justify-start md:space-x-10">
           <div className="flex justify-start w-0 flex-1">
             <a href="/">
-              <img
-                className="h-9 w-[8rem]"
-                src="./assets/logo/airbnb.svg"
-                alt="air bnb logo"
-              />
+              <div className="h-9 w-[8rem]">
+              <AirBnbIcon/>
+              </div>
             </a>
           </div>
           <Popover.Group as="nav" className="flex space-x-5 lg:space-x-10">
