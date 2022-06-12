@@ -6,27 +6,25 @@ function InlineMap({...props}) {
 
   const options = { closeBoxURL: '', enableEventPropagation: true };
 
-  console.log(props.dataMarker.coor);
-
     return (
         <div>
           <GoogleMap
               defaultZoom={7}
-              defaultCenter={{ lat: 20, lng: 105 }}  
+              defaultCenter={{ lat: 12, lng: 108 }}  
             >
               <Marker
               icon={{
                 url: 'https://insulationpads.co.uk/wp-content/uploads/2017/10/Home.png',
                 scaledSize: new window.google.maps.Size(40, 40),
               }}
-              position={props.dataMarker.coor}
+              position={props.dataMarker?.coor}
           >
             <InfoBox
               options={options}
             >
               <>
                 <div style={{ backgroundColor: 'green', color: 'white', borderRadius:'1em', padding: '0.2em' }}>
-                  {props.dataMarker.name}
+                  {props.dataInfo ? <span>{props.dataInfo?.name}, {props.dataInfo.province}, {props.dataInfo.country}</span> : <span>{props.dataMarker?.name}</span>}
                 </div>
               </>
             </InfoBox>  

@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "antd";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const { Meta } = Card;
 
 export default function ItemProvince({ data }) {
