@@ -1,4 +1,4 @@
-export default function useRandLocation() {
+export default function useRandLocation(element) {
     const location = [{
         name: 'Đà Nẵng',
         coor: {
@@ -6,19 +6,19 @@ export default function useRandLocation() {
           lng: 108,
         }
       },{
-        name: 'tp Hồ Chí Minh',
+        name: 'Hồ Chí Minh',
         coor: {
             lat: 10.82,
             lng: 106.6,
         }
       },{
-        name: 'Nha Trang, Khánh Hòa',
+        name: 'Nha Trang',
         coor: {
             lat: 12.25,
             lng: 109.19,
         }
       },{
-        name: 'tp Đà Lạt, Lâm Đồng',
+        name: 'Đà Lạt',
         coor: {
             lat: 11.94,
             lng: 108.46,
@@ -30,7 +30,7 @@ export default function useRandLocation() {
             lng: 105.83
         },
       },{
-        name: 'tp Vinh',
+        name: 'Vinh',
         coor:{
             lat: 18.68,
         lng: 105.68,
@@ -42,13 +42,13 @@ export default function useRandLocation() {
             lng: 103.98,
         }
       },{
-        name: 'tp Huế',
+        name: 'Hội An',
         coor: {
             lat: 16.46,
             lng: 107.59,
         }
       },{
-        name: 'tp Vũng tàu',
+        name: 'Bà Rịa - Vũng Tàu',
         coor: {
             lat: 10.41,
             lng: 107.14,
@@ -65,8 +65,6 @@ export default function useRandLocation() {
         lat: 21.027763, lng: 105.834160
       } }]
 
-    const loacationLength = location.length;
-    const randNum = Math.floor(Math.random() * loacationLength);
-
-    return location[randNum];
+    const loacationLength = location.find(itemLocation => element === itemLocation.name);
+    return loacationLength;
 }

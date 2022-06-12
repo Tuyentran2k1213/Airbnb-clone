@@ -8,6 +8,8 @@ import Rating from "./Review";
 import YourReview from "./YourReview";
 import Bill from "./Bill";
 import InlineMap from "../../../Component/InlineMap/InlineMap";
+import HostedBy from "./HostedBy";
+import { useRandLocation } from '../../../HOOK';
 const key = 'AIzaSyALiRgSCrHgQmHxbmoWPFdGoVNUvG--wp0';
 
 export default function MainRoom( {...props} ) {
@@ -17,7 +19,11 @@ export default function MainRoom( {...props} ) {
 
     const { chitietPhong } = useSelector(state => state.roomReducer);
 
-    const randLocation = props.randing;
+    let randLocation;
+    const randLoca = useRandLocation(chitietPhong?.locationId?.province);
+    if(chitietPhong) {
+        randLocation = randLoca;
+    }
 
     useEffect(() => {
         dispatch(roomAction.getDetailRoom(props.id_place))
@@ -25,20 +31,24 @@ export default function MainRoom( {...props} ) {
 
     return (
         <>
-        <div>
+        <div className="px-0 md:px-6 lg:px-12 xl:px-36">
             
-            <h1>{chitietPhong?.name}</h1>
-            <p>
+            <h1 className="room-title">{chitietPhong?.name}</h1> <br/>
                 <a href="#">
-                    { chitietPhong?.locationId ? <span>{chitietPhong?.locationId?.name}, {chitietPhong?.locationId?.province}, {chitietPhong?.locationId?.country}</span> : <span>{randLocation.name}, Viet Nam</span> }
+                    { chitietPhong?.locationId ? <span>{chitietPhong?.locationId?.name}, {chitietPhong?.locationId?.province}, {chitietPhong?.locationId?.country}</span> : <span>{randLocation?.name}, Viet Nam</span> }
                 </a>
-            </p>
             {chitietPhong?.locationId ? <img src={chitietPhong?.locationId?.image} /> : <img src="https://www.w3schools.com/w3css/img_lights.jpg"/>}
-            <div>
-                <h1>{chitietPhong?.description}</h1>
-                <span>{chitietPhong?.bath} bath, {chitietPhong?.bedRoom} bed room, {chitietPhong?.guests} guests</span>
+            <div className="border-b-2 py-4">
+                <h1 className="text-xl">{chitietPhong?.description}</h1>
+                <div className="flex justify-between">
+                    <div className="hosted-by-title">
+                        <h1>This hosted by</h1>
+                        <span>{chitietPhong?.bath} bath, {chitietPhong?.bedRoom} bed room, {chitietPhong?.guests} guests</span>
+                    </div>
+                    {chitietPhong ? <HostedBy roomId={chitietPhong._id} /> : ''}
+                </div>
             </div>
-            <div>
+            <div className="border-b-2 py-4">
                 <div>
                     <DesignedIcon/>
                     jfdsbjfdbshjf
@@ -54,7 +64,7 @@ export default function MainRoom( {...props} ) {
                 <Bill/>
             </div>
             <div>
-                <img src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" alt="oke image" />
+                <img className="h-[26px] w-[123px]" src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" alt="oke image" />
                 <p>Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</p>
                 <a href="#">Learn more</a>
             </div>
@@ -96,6 +106,7 @@ export default function MainRoom( {...props} ) {
             <div>
                 <InlineMap
                 dataMarker={randLocation}
+                dataInfo={chitietPhong?.locationId}
                 googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${key}&callback=initMap`}
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `90vh`, margin: `auto`, border: '2px solid black' }} />}
