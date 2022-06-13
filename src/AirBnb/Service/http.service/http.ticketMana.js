@@ -29,7 +29,7 @@ class HttpRequestService {
     return AxiosServ.deleteMothod(uri, data);
   };
   layDanhSachVeTheoNguoiDung = (id) => {
-    const uri = `/api/tickets/by-user?userID=${id}`;
+    const uri = `/api/tickets/by-user?userId=${id}`;
     return AxiosServ.getMethod(uri);
   };
   layDanhSachVeTheoPhong = (id) => {

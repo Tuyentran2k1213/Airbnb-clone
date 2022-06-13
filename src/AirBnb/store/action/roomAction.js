@@ -1,9 +1,9 @@
-import httpRoomsMana from "../../Service/http.service/http.roomsMana";
+import { httpServ } from "../../Service/Service";
 import { LAY_CHI_TIET_PHONG, SET_DANH_SACH_PHONG } from "../constant/roomConstant";
 
 export const getRoomAction = () => {
   return (dispatch) => {
-    httpRoomsMana
+    httpServ.httpRoomsMana
       .layDanhSachPhong()
       .then((res) => {
         dispatch({
@@ -19,7 +19,7 @@ export const getRoomAction = () => {
 
 export const getDetailRoom = id => {
   return dispatch => {
-    httpRoomsMana
+    httpServ.httpRoomsMana
       .layThongTinChiTietPhong(id)
       .then(res => {
         dispatch({

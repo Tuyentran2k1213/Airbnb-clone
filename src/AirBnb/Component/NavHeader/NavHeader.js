@@ -1,7 +1,7 @@
 import { Fragment, Suspense, lazy, useEffect, useState } from 'react';
 import { AirBnbIcon } from '../../assets/SpecialIcon';
 import { Popover, Transition } from '@headlessui/react';
-import { NavLink } from 'react-router-dom';
+import { NavLink,useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { userAction } from '../../store';
 // import { SignupForm } from '../FormModal/FormModal';
@@ -63,6 +63,10 @@ export default function NavHeader() {
       dispatch(userAction.LogoutAction());
       setLoadingSignin(false);
     }, 1000)
+  }
+  let navigate = useNavigate()
+  const handleToUserPage = () =>{
+    navigate('/user')
   }
 
   return (
@@ -157,7 +161,7 @@ export default function NavHeader() {
                 <a>
                   Tổ chức trải nghiệm
                 </a>
-                <a className='border-b border-gray-300'>
+                <a className='border-b border-gray-300' onClick={handleToUserPage}>
                   Tài khoản
                 </a>
                 <a>
@@ -243,7 +247,7 @@ export default function NavHeader() {
             <AnnotationIcon className='h-8 w-8 text-gray-400 navbar-bot-icon'/>
             <span className='text-[11px] font-medium text-gray-500'>Hộp thư</span>
         </NavLink>
-        <NavLink to='/mobile/login' className={({ isActive }) => `h-16 mx-[22px] sm:mx-[40px] flex flex-col justify-center items-center ${isActive ? 'navbar-bot-item-active' : ''}`}>
+        <NavLink to='/user' className={({ isActive }) => `h-16 mx-[22px] sm:mx-[40px] flex flex-col justify-center items-center ${isActive ? 'navbar-bot-item-active' : ''}`}>
             <UserCircleIcon className='h-8 w-8 text-gray-400 navbar-bot-icon'/>
             <span className='text-[11px] font-medium text-gray-500'>Hồ sơ</span>
         </NavLink>

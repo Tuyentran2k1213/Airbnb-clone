@@ -1,0 +1,203 @@
+.Userpage {
+  .container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    .UserInfor {
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      .avatar {
+        border-radius: 50%;
+        height: 100px;
+        width: 100px;
+      }
+      .xacminh {
+        width: 70%;
+      }
+      .buttonxacminh {
+        height: 50px;
+        width: 70%;
+        border: 1px solid;
+        margin-top: 10px;
+        border-radius: 5px;
+      }
+      a {
+        color: black;
+        margin-top: 10px;
+      }
+      ul {
+        text-align: start;
+        li {
+          font-weight: bold;
+        }
+      }
+    }
+    .UserTicket {
+      .Usertickettitle {
+        .ticketgroup {
+        }
+      }
+    }
+  }
+  .ticketitem {
+    color: black;
+    display: flex;
+    margin: 10px 0 10px 0;
+    img {
+      border-radius: 10px;
+    }
+    .ticketitem_infor {
+      .name{
+        font-weight: bold; 
+      }
+      .tienich {
+        display: flex;
+        div {
+          margin: 2px;
+          margin-left: 3px;
+          font-size: 15px;
+          
+        }
+      }
+    }
+  }
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  .Userpage {
+    .container {
+      flex-direction: column;
+      align-items: center;
+      .UserInfor {
+        height: 400px;
+      }
+      .UserTicket {
+        height: auto;
+        .Usertickettitle {
+          font-size: 20px;
+          margin-top: 20px;
+          .ticketgroup {
+            
+          }
+        }
+        .ticketitem {
+          flex-wrap: wrap;
+          .name{
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .Userpage{
+    width: 100%;
+    margin-top: 110px;
+    .container{
+    flex-direction: column;
+    .UserInfor{
+      width: 50%;
+      margin: auto;
+      padding: 20px 0 20px 0;
+    }
+    .UserTicket{
+      margin-top: 30px;
+      .Usertickettitle{
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .ticketitem{
+        .ticketitem_infor{
+          margin-left: 10px;
+          .name{
+            font-size: 20px;
+          }
+        }
+      }
+    }
+    }
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .Userpage{
+    width: 100%;
+    margin-top: 110px;
+    .container{
+    flex-direction: column;
+    .UserInfor{
+      width: 50%;
+      margin: auto;
+      padding: 20px 0 20px 0;
+    }
+    .UserTicket{
+      margin-top: 30px;
+      .Usertickettitle{
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .ticketitem{
+        .ticketitem_infor{
+          margin-left: 10px;
+          .name{
+            font-size: 20px;
+          }
+        }
+      }
+    }
+    }
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .Userpage {
+    margin-top: 120px;
+    .container {
+      .UserInfor {
+        height: 500px;
+        width: 25%;
+        ul {
+          margin-top: 10px;
+          li {
+            font-size: 15px;
+            line-height: 30px;
+          }
+        }
+      }
+      .UserTicket {
+        width: 75%;
+        padding-left: 50px;
+        .Usertickettitle {
+          font-size: 40px;
+        }
+        .ticketgroup {
+          height: 800px;
+        }
+        .ticketitem {
+          .ticketitem_infor {
+            margin-left: 20px;
+            .name {
+              font-size: 30px;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}

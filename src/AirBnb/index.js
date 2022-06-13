@@ -6,7 +6,14 @@ import "./assets/scss/style.scss";
 import { userAction } from "./store";
 import { SecureView } from "./HOC/HOC";
 import Main from "./Page/MainPage/Main";
-import { DetailLocation, InnerPage, LoginPage, SignupPage, DetailRoom } from "./Page/Page";
+import {
+  DetailLocation,
+  InnerPage,
+  LoginPage,
+  SignupPage,
+  DetailRoom,
+  UserPage,
+} from "./Page/Page";
 import { Spin } from "antd";
 
 export default function Airbnb() {
@@ -30,28 +37,46 @@ export default function Airbnb() {
     }
   }, []);
 
-  return (
-    loading ? <div className="w-screen h-screen flex justify-center items-center">
-        <Spin size="large" tip="loading..."/>
-      </div> : 
-      <>
+  return loading ? (
+    <div className="w-screen h-screen flex justify-center items-center">
+      <Spin size="large" tip="loading..." />
+    </div>
+  ) : (
+    <>
       <BrowserRouter>
-      <Routes>
-          <Route path="/" element={<SecureView Component={<Main/>}/>} />
-          <Route path="/main" element={<SecureView Component={<InnerPage />} />} />
+        <Routes>
+          <Route path="/" element={<SecureView Component={<Main />} />} />
+          <Route
+            path="/main"
+            element={<SecureView Component={<InnerPage />} />}
+          />
           <Route path="/mobile">
-          <Route path="login" element={<SecureView Component={<LoginPage />} />} />
-          <Route path="signup" element={<SecureView Component={<SignupPage />} />} />
-          {/* <Route path="/signup" element={<SecureView Component={<InnerPage />} />} /> */}
+            <Route
+              path="login"
+              element={<SecureView Component={<LoginPage />} />}
+            />
+            <Route
+              path="signup"
+              element={<SecureView Component={<SignupPage />} />}
+            />
+            {/* <Route path="/signup" element={<SecureView Component={<InnerPage />} />} /> */}
           </Route>
           <Route path="/detail">
-            <Route path="province/:data"
-            element={<SecureView Component={<DetailLocation />} />}/>
-            <Route path="room/:id"
-            element={<SecureView Component={<DetailRoom/>}/>}/>
+            <Route
+              path="province/:data"
+              element={<SecureView Component={<DetailLocation />} />}
+            />
+            <Route
+              path="room/:id"
+              element={<SecureView Component={<DetailRoom />} />}
+            />
           </Route>
+          <Route
+            path="/user"
+            element={<SecureView Component={<UserPage />} />}
+          />
         </Routes>
       </BrowserRouter>
-      </>   
-  )
+    </>
+  );
 }
