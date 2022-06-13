@@ -6,8 +6,11 @@ import { GiFireplace, GiHeatHaze } from "react-icons/gi";
 import { MdOutlineLocalLaundryService, MdCable } from "react-icons/md";
 import { CgGym } from "react-icons/cg";
 import { AiOutlineWifi } from "react-icons/ai";
+import moment from "moment";
 
 export default function TicketItem({ data }) {
+  let checkIntime = moment(data.checkIn).format('MMMM Do YYYY, h:mm:ss a');
+  let checkOuttime = moment(data.checkOut).format('MMMM Do YYYY, h:mm:ss a');
   return (
     <div className="ticketitem">
       <img src={data.roomId?.image} alt="" />
@@ -43,6 +46,17 @@ export default function TicketItem({ data }) {
               <div>{data.roomId?.cableTV ? <MdCable /> : <></>}</div>
             </span>
           </li>
+          <li>
+            <span className="checkin">
+              Thời gian checkin: {checkIntime}
+            </span>
+          </li>
+          <li>
+            <span className="checkout">
+              Thời gian checkout: {checkOuttime}
+            </span>
+          </li>
+          
         </ul>
       </div>
     </div>
