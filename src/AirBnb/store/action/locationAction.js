@@ -1,10 +1,10 @@
-import httpLocationMana from "../../Service/http.service/http.locationMana";
+import { httpServ } from "../../Service/Service";
 import { SET_DANH_SACH_VI_TRI } from "../constant/locationConstant";
 
 
 export const getLocationAction = () => {
   return (dispatch) => {
-    httpLocationMana
+    httpServ.httpLocationMana
       .layDanhSachViTri()
       .then((res) => {
         // console.log(res);

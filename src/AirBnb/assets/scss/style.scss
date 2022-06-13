@@ -55,7 +55,11 @@
     }
   }
 }
-
+.locationTitle{
+  width: 80%;
+  margin: auto;
+  margin-bottom: 20px;
+}
 .carousel {
   position: relative;
   .search {
@@ -179,6 +183,7 @@
     }
   }
   .footer {
+    height: auto;
     .footer_upper {
       border: none;
       .footer_upper-item {
@@ -259,4 +264,5 @@
 
 // Large devices (desktops, less than 1200px)
 @media (max-width: 1199.98px) {
+  
 }

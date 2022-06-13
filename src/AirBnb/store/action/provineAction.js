@@ -1,6 +1,5 @@
-import { Action } from "history";
 import _ from "lodash";
-import httpLocationMana from "../../Service/http.service/http.locationMana";
+import { httpServ } from "../../Service/Service";
 import {
   SET_DANH_SACH_TINH,
   SET_DANH_SACH_TINH_2,
@@ -17,7 +16,7 @@ export const getProvinceAction = () => {
 
 export const getProvinceAction2 = () => {
   return (dispatch) => {
-    httpLocationMana
+    httpServ.httpLocationMana
       .layDanhSachViTri()
       .then((res) => {
         // console.log(res);
