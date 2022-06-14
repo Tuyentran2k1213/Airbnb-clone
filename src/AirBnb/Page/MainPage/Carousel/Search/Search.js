@@ -42,9 +42,6 @@ export default function Search() {
         {dsTinh2.map((item) => {
           return <Option value={`${item}`}>{item}</Option>;
         })}
-        <Option value="jack">Jack</Option>
-        <Option value="lucy">Lucy</Option>
-        <Option value="tom">Tom</Option>
       </Select>
       <RangePicker
         className="picker"
@@ -61,7 +58,7 @@ export default function Search() {
         <Option value="4">đi theo đoàn nhóm</Option>
         <Option value="5">đi công tác</Option>
       </Select>
-      <NavLink to={`/detail/${location}`} target={"_blank"}>
+      <NavLink to={`/detail/province/${location}`} target={"_blank"}>
         <Button
           target={"_blank"}
           className="button"

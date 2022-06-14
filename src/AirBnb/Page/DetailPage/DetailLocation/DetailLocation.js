@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ItemLocation from "./ItemLocation/ItemLocation";
 import { useDispatch, useSelector } from "react-redux";
 import { roomAction } from "../../../store";
+import "./DetailLocation.scss"
 export default function DetailLocation() {
   let dispatch = useDispatch();
   useEffect(() => {
@@ -18,7 +19,7 @@ export default function DetailLocation() {
   //   console.log(dsPhongPhuHop);
   // }, [dsPhongPhuHop]);
   return (
-    <div className=" container mx-auto mt-36 flex flex-col">
+    <div className="detaillocation container mx-auto mt-36 flex flex-col">
       <h1 className="text-4xl">Các địa điểm hàng đầu tại {data}</h1>
       {dsPhongPhuHop.map((item, index) => {
         return <ItemLocation data={item} key={index}/>;
